@@ -1,4 +1,4 @@
-declare module 'redux-undo-redo' {
+declare namespace Undo {
   type paramObject = {
     getViewState: any;
     setViewState: any;
@@ -22,9 +22,11 @@ declare module 'redux-undo-redo' {
   export function addUndoItem(action: string, beforeState: string, afterState: string, meta: any): any;
 
   interface IActions {
-    undo: () => any;
-    redo: () => any;
+    undo: (history: INITIAL_UNDO_HISTORY_STATE) => any;
+    redo: (history: INITIAL_UNDO_HISTORY_STATE) => any;
     addUndoItem: (action: string, beforeState: string, afterState: string, meta: any) => any;
   }
   export const actions: IActions;
 }
+
+export = Undo;
