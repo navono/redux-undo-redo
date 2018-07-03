@@ -15,6 +15,12 @@ Cons:
 1. Harder implementation than just applying high-order-reducer
 2. Developers need to be aware they need to provide reverting actions to support undo (or is it a pro?)
 
+---
+## Change point
+Add optional parameter in `undo` and `redo`, so in this scenario, We can use this in any nested store layer, it's not just in the root store. And we must handle `'UNDO_HISTORY@UNDO', 'UNDO_HISTORY@REDO', 'UNDO_HISTORY@ADD', 'UNDO_HISTORY@CLEAR'` in our custom reducers.
+
+
+---
 ## Usage
 
 add the undoHistoryReducer to your top state
