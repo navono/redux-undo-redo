@@ -1,9 +1,19 @@
-export function undo() {
-  return {type: 'UNDO_HISTORY@UNDO'}
+export function undo(history = null) {
+  return {
+    type: 'UNDO_HISTORY@UNDO',
+    payload: {
+      history
+    }
+  }
 }
 
-export function redo() {
-  return {type: 'UNDO_HISTORY@REDO'}
+export function redo(history = null) {
+  return {
+    type: 'UNDO_HISTORY@REDO',
+    payload: {
+      history
+    }
+  }
 }
 
 export function addUndoItem(action, beforeState, afterState, args) {

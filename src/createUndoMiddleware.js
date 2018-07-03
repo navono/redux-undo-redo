@@ -13,11 +13,13 @@ export default function createUndoMiddleware({getViewState, setViewState, revert
 
   return ({dispatch, getState}) => (next) => (action) => {
     const state = getState()
+    const paramState = action.payload.history
     const ret = next(action)
+    
 
     switch (action.type) {
     case 'UNDO_HISTORY@UNDO': {
-      const undoItem = getUndoItem(state)
+      const undoItem = getUndoItem(paramState ? paramState : state)
       if (undoItem) {
         acting = true
         setViewState && dispatch(setViewState(undoItem.afterState))
@@ -28,7 +30,7 @@ export default function createUndoMiddleware({getViewState, setViewState, revert
     }
       break
     case 'UNDO_HISTORY@REDO': {
-      const redoItem = getRedoItem(state)
+      const redoItem = getRedoItem(paramState ? paramState : state)
       if (redoItem) {
         acting = true
         setViewState && dispatch(setViewState(redoItem.beforeState))
@@ -41,9 +43,9 @@ export default function createUndoMiddleware({getViewState, setViewState, revert
       if (!acting && includes(SUPPORTED_ACTIONS, action.type)) {
         dispatch(addUndoItem(
           action,
-          getViewState && getViewState(state),
+          getViewState && getViewState(paramState ? paramState : state),
           getViewState && getViewState(getState()),
-          getUndoArgs(state, action)
+          getUndoArgs(paramState ? paramState : state, action)
         ))
       }
       break
