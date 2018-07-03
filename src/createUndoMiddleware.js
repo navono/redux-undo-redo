@@ -13,7 +13,7 @@ export default function createUndoMiddleware({getViewState, setViewState, revert
 
   return ({dispatch, getState}) => (next) => (action) => {
     const state = getState()
-    const paramState = action.payload.history
+    const paramState = action.payload ? action.payload.history : null
     const ret = next(action)
     
 
