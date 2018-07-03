@@ -13,9 +13,15 @@ export default function createUndoMiddleware({getViewState, setViewState, revert
 
   return ({dispatch, getState}) => (next) => (action) => {
     const state = getState()
-    const paramState = action.payload ? { undoHistory: action.payload.history } : null
-    const ret = next(action)
+
+    let paramState;
+    if (action.payload) {
+      paramState = action.payload.history ? { undoHistory: action.payload.history } : null
+    } else {
+      paramState = null;
+    }
     
+    const ret = next(action)
 
     switch (action.type) {
     case 'UNDO_HISTORY@UNDO': {
