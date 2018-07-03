@@ -1,6 +1,6 @@
 {
   "name": "@supcon/redux-undo-redo",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "enables undo-redo by defining opposite actions",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
