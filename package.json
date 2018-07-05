@@ -1,12 +1,12 @@
 {
   "name": "@supcon/redux-undo-redo",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "enables undo-redo by defining opposite actions",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf lib",
-    "build": "babel src -d lib && cp src/index.d.ts lib/",
+    "build": "babel src -d lib && xcopy .\\src\\index.d.ts .\\lib\\",
     "build:watch": "npm run build -- --watch",
     "test": "mocha --compilers js:babel-register --require ./testSetup.js",
     "test:watch": "npm run test -- --watch",
