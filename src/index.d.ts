@@ -7,8 +7,8 @@ declare namespace Undo {
   export function createUndoMiddleware({ getViewState, setViewState, revertingActions }: paramObject): any;
 
   type INITIAL_UNDO_HISTORY_STATE = {
-    undoQueue: object[];
-    redoQueue: object[];
+    undoQueue: any[];
+    redoQueue: any[];
   }
 
   export function undoHistoryReducer(state: INITIAL_UNDO_HISTORY_STATE, action: any): INITIAL_UNDO_HISTORY_STATE;
